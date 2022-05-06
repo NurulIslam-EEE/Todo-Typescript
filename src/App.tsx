@@ -74,17 +74,18 @@ const [todo,setTodo]=useState<string>('')
 const [todos,setTodos]=useState<Todo[]>([])
 
 useEffect(()=>{
-  const data=localStorage.getItem('todos')
-//  console.log(JSON.parse(data))
+  const data=JSON.parse(localStorage.getItem('todos')|| '[]')
+  console.log(data)
+  setTodos(data)
   // setTodos(JSON.parse(data))
-})
+},[])
 
 const handleAdd=(e:React.FormEvent)=>{
   e.preventDefault();
   if(todo){
     setTodos([...todos,{id:Date.now(),todo,isDone:false}])
     setTodo('')
-    localStorage.setItem('todos',JSON.stringify(todos))
+    localStorage.setItem('todos',JSON.stringify([...todos,{id:Date.now(),todo,isDone:false}]))
   }
 }
 

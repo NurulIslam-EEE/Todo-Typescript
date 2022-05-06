@@ -26,7 +26,7 @@ const SingleTodo = ({ todo, todos, setTodos }: Props) => {
 
   const handleDelete = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
-    localStorage.setItem('todos',JSON.stringify(todos))
+    localStorage.setItem('todos',JSON.stringify(todos.filter((todo) => todo.id !== id)))
   };
 
 
